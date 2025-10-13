@@ -1,0 +1,53 @@
+import random
+
+def elegir_palabra():
+    palabras = [
+    "perro",
+    "gato",
+    "mesa",
+    "silla",
+    "reloj",
+    "queso",
+    "playa",
+    "lluvia",
+    "bosque",
+    "tiburon",
+    "montania",
+    "castillo",
+    "barril",
+    "nieve",
+    "fuego",
+    "globo",
+    "lapiz",
+    "camino",
+    "puente",
+    "coche",
+    "avion",
+    "barco",
+    "trenes",
+    "planeta",
+    "jirafa",
+    "sombrero",
+    "estrella",
+    "volcan",
+    "ventana",
+    "escuela"
+]
+    return random.choice(palabras)
+
+def verificar_letra(letra,palabra,letras_correctas,letras_incorrectas):
+    if letra in palabra and letra not in letras_correctas:
+        letras_correctas.append(letra)
+        return True
+    else:
+        if letra not in palabra:
+            letras_incorrectas.append(letra)
+        return False
+
+# palabra se va a tomar en elegir_palabra, en el main vamos a poner palabra = elegir_palabra()
+# En la interfaz tambien se agrega "letra"
+# letras_correctas lo inicializamos en el main como "letras_correctas = []" tambien inicializamos letras_incorrectas = []
+# 
+
+
+
