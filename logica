@@ -40,8 +40,7 @@ def verificar_letra(letra,palabra,letras_correctas,letras_incorrectas):
         letras_correctas.append(letra)
         return True
     else:
-        if letra not in palabra:
-            letras_incorrectas.append(letra)
+        letras_incorrectas.append(letra)
         return False
 
 # palabra se va a tomar en elegir_palabra, en el main vamos a poner palabra = elegir_palabra()
