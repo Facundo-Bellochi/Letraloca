@@ -1,41 +1,16 @@
 import random
 
 def elegir_palabra():
+    # Devuelve una palabra aleatoria de la lista
     palabras = [
-    "perro",
-    "gato",
-    "mesa",
-    "silla",
-    "reloj",
-    "queso",
-    "playa",
-    "lluvia",
-    "bosque",
-    "tiburon",
-    "montania",
-    "castillo",
-    "barril",
-    "nieve",
-    "fuego",
-    "globo",
-    "lapiz",
-    "camino",
-    "puente",
-    "coche",
-    "avion",
-    "barco",
-    "trenes",
-    "planeta",
-    "jirafa",
-    "sombrero",
-    "estrella",
-    "volcan",
-    "ventana",
-    "escuela"
-]
+        "perro","gato","mesa","silla","reloj","queso","playa","lluvia","bosque",
+        "tiburon","montania","castillo","barril","nieve","fuego","globo","lapiz",
+        "camino","puente","coche","avion","barco","trenes","planeta","jirafa",
+        "sombrero","estrella","volcan","ventana","escuela"
+    ]
     return random.choice(palabras)
 
-def verificar_letra(letra,palabra,letras_correctas,letras_incorrectas):
+def verificar_letra(letra, palabra, letras_correctas, letras_incorrectas):
     if letra in palabra and letra not in letras_correctas:
         letras_correctas.append(letra)
         return True
@@ -44,10 +19,16 @@ def verificar_letra(letra,palabra,letras_correctas,letras_incorrectas):
             letras_incorrectas.append(letra)
         return False
 
-# palabra se va a tomar en elegir_palabra, en el main vamos a poner palabra = elegir_palabra()
-# En la interfaz tambien se agrega "letra"
-# letras_correctas lo inicializamos en el main como "letras_correctas = []" tambien inicializamos letras_incorrectas = []
+def palabra_adivinada(palabra, letras_correctas):
+    # Devuelve True si todas las letras de la palabra están en letras_correctas 
+    for letra in palabra:
+        if letra not in letras_correctas:
+            return False
+    return True
+
+
 # 
+
 
 
 
