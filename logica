@@ -40,7 +40,7 @@ def verificar_letra(letra,palabra,letras_correctas,letras_incorrectas):
         letras_correctas.append(letra)
         return True
     else:
-        if letra not in palabra:
+        if letra not in letras_incorrectas:
             letras_incorrectas.append(letra)
         return False
 

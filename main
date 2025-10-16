@@ -1,0 +1,30 @@
+from logica import elegir_palabra, verificar_letra
+from interfaz import mostrar_estado, pedir_letra, inicializar_palabra
+
+
+def main():
+    letras_correctas = []
+    letras_incorrectas = []
+    intentos = 6
+    palabra_secreta = elegir_palabra()
+    palabra_mostrada = " ".join(inicializar_palabra(palabra_secreta))
+    print(palabra_secreta)
+    print(palabra_mostrada)
+    while intentos > 0:
+        letra = pedir_letra()
+        mostrar_estado(palabra_secreta, letras_correctas, letras_incorrectas, intentos)
+        resultado = verificar_letra(letra,palabra_secreta,letras_correctas,letras_incorrectas)
+        if resultado is True:
+            print("nice")
+        elif resultado is False:
+            intentos -= 1
+            print("mal")
+
+
+main()
+
+#Primero tengo que corregir lo de la interfaz de bienvenida, mostrar menu
+#Buscar como actualizar la pantalla cada rato para que no tenga que escribir una letra y me salte recien si estaba bien o mal
+#Que muestre un mensaje si ganas o si perdes
+#Crear logica de cuando ganas, hasta ahora solo esta cuando perdes
+#Mostrar el pj que se actualize si erras y blabla
