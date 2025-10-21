@@ -1,1 +1,25 @@
-print("hola mundo")
+import os 
+
+def mostrar_estado(palabra_secreta, letras_correctas, letras_incorrectas, intentos):
+    # Aca mostramos el estado actual del juego
+    print("Juego del ahorcado")
+    print(f"Errores: {intentos} / 6")
+    print("Palabra:", "".join([letra if letra in letras_correctas else "_" for letra in palabra_secreta]))
+    print("Letras incorrectas:", ", ".join(letras_incorrectas))
+    print("_" * 30)
+
+def pedir_letra():
+    # Aca pedimos al jugador que ingrese una letra valida 
+
+    letra = input("Ingresá una letra: ").lower()
+    while not letra.isalpha() or len(letra) != 1:
+        letra = input("Por favor, ingresá una sola letra válida: ").lower()
+    return letra
+
+def inicializar_palabra(palabra):
+    # Aca hacemos la lista de guiones para la palabra
+    return ["_"] * len(palabra)
+
+def limpiar_pantalla():
+    # Limpia la pantalla de la consola
+    os.system('cls' if os.name == 'nt' else 'clear')
