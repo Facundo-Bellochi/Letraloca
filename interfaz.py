@@ -8,13 +8,21 @@ def mostrar_estado(palabra_secreta, letras_correctas, letras_incorrectas, intent
     print("Letras incorrectas:", ", ".join(letras_incorrectas))
     print("_" * 30)
 
-def pedir_letra():
-    # Aca pedimos al jugador que ingrese una letra valida loco
+def pedir_entrada():
+    while True:
+        entrada = input("Ingresá una letra o arriesgá la palabra completa: ").lower().strip()
+        if not entrada:
+            print("No ingresaste nada. Intentá de nuevo.")
+            continue
+        if len(entrada) == 1 and entrada.isalpha():
+            return entrada
+        elif len(entrada) > 1 and entrada.isalpha():
+            return entrada
+        else:
+            print("Por favor, ingresá una sola letra válida o una palabra completa.")
+# Cambiamos la funcion pedir_letra por pedir_entrada para que se entienda que cambiamos la funcion completa
 
-    letra = input("Ingresá una letra: ").lower()
-    while not letra.isalpha() or len(letra) != 1:
-        letra = input("Por favor, ingresá una sola letra válida: ").lower()
-    return letra
+
 
 def inicializar_palabra(palabra):
     # Aca hacemos la lista de guiones para la palabra
