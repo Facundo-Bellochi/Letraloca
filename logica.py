@@ -86,18 +86,15 @@ def jugar_ahorcado():
             palabra_arriesgada = entrada
             print(f"Arriesgaste la palabra: '{palabra_arriesgada}'")
             
-            if palabra_arriesgada == palabra_secreta:
-                # Si acierta, considera todas las letras como correctas para el display final
-                for letra in palabra_secreta:
-                    if letra not in letras_correctas:
-                        letras_correctas.append(letra)
+            if palabra_arriesgada == palabra_secreta:                
                 ganaste = True
                 jugando = False
                 print("¡Arriesgo correcto!")
             else:
-                intentos -= 1
-                print("¡Palabra incorrecta! Perdés un intento.")
-
+                intentos -= 1 
+                print("¡Palabra incorrecta! ¡Has perdido por arriesgar mal!")
+                jugando = False 
+                ganaste = False
 
         # Verificar condiciones de fin
         if not ganaste and palabra_adivinada(palabra_secreta, letras_correctas):

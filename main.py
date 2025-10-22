@@ -13,3 +13,4 @@ if __name__ == "__main__":
 #Crear logica de cuando ganas, hasta ahora solo esta cuando perdes [Listo]
 #Mostrar el pj que se actualize si erras y blabla. [Listo]
 
+
