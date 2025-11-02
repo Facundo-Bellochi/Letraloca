@@ -1,16 +1,24 @@
-from logica import elegir_palabra, verificar_letra, palabra_adivinada, jugar_ahorcado
-from interfaz import mostrar_estado, pedir_entrada, inicializar_palabra, limpiar_pantalla
+from logica import jugar_ahorcado
+from interfaz import limpiar_pantalla,pedir_respuesta_continuar, mostrar_mensaje_error_continuar, mostrar_mensaje_despedida
 
 def main():
-    jugar_ahorcado()
+    jugar_otra_vez = True 
+    while jugar_otra_vez:
+        
+        limpiar_pantalla()
+        jugar_ahorcado()
 
+        respuesta_valida = False
+        while not respuesta_valida:
+            respuesta = pedir_respuesta_continuar() 
+            if respuesta in ('s', 'si', 'Si', 'Yes', 'yes'):
+                respuesta_valida = True
+            elif respuesta in ('n', 'no', 'No'):
+                mostrar_mensaje_despedida() 
+                jugar_otra_vez = False  
+                respuesta_valida = True 
+            else:
+                mostrar_mensaje_error_continuar()
+            
 if __name__ == "__main__":
     main()
-
-#Primero tengo que corregir lo de la interfaz de bienvenida, mostrar menu [Listo]
-#Buscar como actualizar la pantalla cada rato para que no tenga que escribir una letra y me salte recien si estaba bien o mal
-#Que muestre un mensaje si ganas o si perdes [Listo]
-#Crear logica de cuando ganas, hasta ahora solo esta cuando perdes [Listo]
-#Mostrar el pj que se actualize si erras y blabla. [Listo]
-
-
