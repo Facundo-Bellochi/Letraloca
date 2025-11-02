@@ -1,5 +1,5 @@
 from logica import elegir_palabra, verificar_letra, palabra_adivinada, jugar_ahorcado
-from interfaz import mostrar_estado, pedir_entrada, inicializar_palabra, limpiar_pantalla
+from interfaz import mostrar_estado, pedir_entrada, bienvenida, inicializar_palabra
 
 def main():
     jugar_ahorcado()

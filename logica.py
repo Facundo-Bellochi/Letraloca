@@ -1,5 +1,5 @@
 import random
-from interfaz import limpiar_pantalla, inicializar_palabra, mostrar_estado, pedir_entrada
+from interfaz import mostrar_estado, pedir_entrada, bienvenida, inicializar_palabra
 
 
 
@@ -41,9 +41,7 @@ def palabra_adivinada(palabra, letras_correctas):
 
 
 def jugar_ahorcado():
-    limpiar_pantalla()
-    print("Bienvenido al Juego del Ahorcado!")
-    input("Presioná ENTER para comenzar...")
+    bienvenida() #agrego los prints de bienvenida en una funcion de la interfaz y llamo desde aca 
 
     letras_correctas = []
     letras_incorrectas = []
@@ -55,9 +53,7 @@ def jugar_ahorcado():
     ganaste = False
 
     while jugando:
-        limpiar_pantalla()
         mostrar_estado(palabra_secreta, letras_correctas, letras_incorrectas, intentos)
-
         # Usar la función renombrada
         entrada = pedir_entrada() 
 
@@ -77,9 +73,8 @@ def jugar_ahorcado():
             elif resultado is False:
                 intentos -= 1
                 print(f"¡Mal! La letra '{letra}' no está en la palabra.")
-            # La condición 'else' del código original ya no es necesaria si verificamos antes.
-            # else:
-            #     print(f"Ya ingresaste la letra '{letra}'. Intentá con otra.")
+            else:
+                print(f"Ya ingresaste la letra '{letra}'. Intentá con otra.")
 
         else:
             # Lógica para arriesgar una palabra
@@ -90,8 +85,9 @@ def jugar_ahorcado():
                 ganaste = True
                 jugando = False
                 print("¡Arriesgo correcto!")
+                
             else:
-                intentos -= 1 
+                intentos -= 1
                 print("¡Palabra incorrecta! ¡Has perdido por arriesgar mal!")
                 jugando = False 
                 ganaste = False
@@ -104,7 +100,6 @@ def jugar_ahorcado():
             jugando = False
             
     # ... (El resto de la función es igual)
-    limpiar_pantalla()
     mostrar_estado(palabra_secreta, letras_correctas, letras_incorrectas, intentos)
 
     if ganaste:
