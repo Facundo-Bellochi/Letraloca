@@ -3,6 +3,15 @@ def bienvenida():
     print("Bienvenido al Juego del Ahorcado!")
     input("Presioná ENTER para comenzar...")
 
+def pedir_respuesta_continuar():
+    return input("\n¿Querés jugar de nuevo? (S/N): ").lower().strip()
+
+def mostrar_mensaje_error_continuar():
+    print("⚠️ Error: Opción no válida. Por favor, ingresá 'S' (Sí) o 'N' (No).")
+
+def mostrar_mensaje_despedida():
+    print("\n¡Gracias por jugar! ¡Hasta pronto!")
+
 def mostrar_estado(palabra_secreta, letras_correctas, letras_incorrectas, intentos):
     # Aca mostramos el estado actual del juego
     estado_palabra = " ".join([letra if letra in letras_correctas else "_" for letra in palabra_secreta])
@@ -103,20 +112,10 @@ def pedir_entrada():
         if not entrada:
             print("No ingresaste nada. Intentá de nuevo.")
             continue
-        if len(entrada) == 1 and entrada.isalpha():
-            return entrada
-        elif len(entrada) > 1 and entrada.isalpha():
+        if entrada.isalpha(): 
             return entrada
         else:
-            print("Por favor, ingresá una sola letra válida o una palabra completa.")
-# Cambiamos la funcion pedir_letra por pedir_entrada para que se entienda que cambiamos la funcion completa
+            print("Por favor, ingresá solo letras.")        
 
-
-
-def inicializar_palabra(palabra):
-    # Aca hacemos la lista de guiones para la palabra
-    return [""] * len(palabra)
-
-def limpiar_pantalla():
-    # Limpia la pantalla de la consola
+def limpiar_pantalla():   
     os.system('cls' if os.name == 'nt' else 'clear')

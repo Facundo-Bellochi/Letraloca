@@ -1,30 +1,29 @@
 import random
-from interfaz import mostrar_estado, pedir_entrada, bienvenida, inicializar_palabra
+from interfaz import limpiar_pantalla, mostrar_estado, pedir_entrada, bienvenida
 
 
 
-# Constante global: lista de palabras disponibles
+# Constantes global: lista de palabras disponibles y maximo de intentos.
 PALABRAS = [
     "perro","gato","mesa","silla","reloj","queso","playa","lluvia","bosque",
     "tiburon","montania","castillo","barril","nieve","fuego","globo","lapiz",
     "camino","puente","coche","avion","barco","trenes","planeta","jirafa",
     "sombrero","estrella","volcan","ventana","escuela"
 ]
+MAX_INTENTOS = 6 
+
 
 def elegir_palabra():
     return random.choice(PALABRAS)
-# Transformamos la funcion anterior en una constante llamada a funcion como pidio el profesor +
+
 
 def verificar_letra(letra, palabra, letras_correctas, letras_incorrectas):
-    correcta = letra in palabra
-
-    if correcta and letra not in letras_correctas:
+    es_correcta = letra in palabra 
+    if es_correcta:
         letras_correctas.append(letra)
-    elif not correcta and letra not in letras_incorrectas:
-        letras_incorrectas.append(letra)
-
-    return correcta
-# Cambiamos el doble return a uno solo, dando correcta al terminar.
+    else:
+       letras_incorrectas.append(letra)
+    return es_correcta
 
 def palabra_adivinada(palabra, letras_correctas):
     todas_adivinadas = True
@@ -32,38 +31,28 @@ def palabra_adivinada(palabra, letras_correctas):
         if letra not in letras_correctas:
             todas_adivinadas = False
     return todas_adivinadas
-# le sacamos los dos returns
-# usamos una palabra inicializada en true para transformar 2 returns en 1
-
-
-
-
 
 
 def jugar_ahorcado():
-    bienvenida() #agrego los prints de bienvenida en una funcion de la interfaz y llamo desde aca 
-
+    limpiar_pantalla()
+    bienvenida()
+    intentos = MAX_INTENTOS
     letras_correctas = []
     letras_incorrectas = []
-    intentos = 6
+    
     palabra_secreta = elegir_palabra()
-    palabra_mostrada = inicializar_palabra(palabra_secreta) # Esta línea no es estrictamente necesaria aquí, pero la dejo.
 
     jugando = True
     ganaste = False
 
     while jugando:
         mostrar_estado(palabra_secreta, letras_correctas, letras_incorrectas, intentos)
-        # Usar la función renombrada
         entrada = pedir_entrada() 
 
         if len(entrada) == 1:
-            # Lógica para adivinar una letra
             letra = entrada
-            # **Añadir verificación de letra ya intentada (faltante en tu código original)**
             if letra in letras_correctas or letra in letras_incorrectas:
                 print(f"Ya ingresaste la letra '{letra}'. Intentá con otra.")
-                # Usa 'continue' para volver al inicio del bucle sin perder un intento
                 continue 
 
             resultado = verificar_letra(letra, palabra_secreta, letras_correctas, letras_incorrectas)
@@ -73,11 +62,8 @@ def jugar_ahorcado():
             elif resultado is False:
                 intentos -= 1
                 print(f"¡Mal! La letra '{letra}' no está en la palabra.")
-            else:
-                print(f"Ya ingresaste la letra '{letra}'. Intentá con otra.")
 
         else:
-            # Lógica para arriesgar una palabra
             palabra_arriesgada = entrada
             print(f"Arriesgaste la palabra: '{palabra_arriesgada}'")
             
@@ -92,14 +78,13 @@ def jugar_ahorcado():
                 jugando = False 
                 ganaste = False
 
-        # Verificar condiciones de fin
         if not ganaste and palabra_adivinada(palabra_secreta, letras_correctas):
             ganaste = True
             jugando = False
         elif intentos <= 0:
             jugando = False
             
-    # ... (El resto de la función es igual)
+    limpiar_pantalla()
     mostrar_estado(palabra_secreta, letras_correctas, letras_incorrectas, intentos)
 
     if ganaste:
